@@ -1,0 +1,72 @@
+{
+"Dhcp4": {
+    "interfaces-config": {
+        // specify network interfaces to listen on
+        "interfaces": [ "ens18" ]
+    },
+    // settings for expired-leases (follows are default)
+    "expired-leases-processing": {
+        "reclaim-timer-wait-time": 10,
+        "flush-reclaimed-timer-wait-time": 25,
+        "hold-reclaimed-time": 3600,
+        "max-reclaim-leases": 100,
+        "max-reclaim-time": 250,
+        "unwarned-reclaim-cycles": 5
+    },
+    // T1 timer that govern when the client begins the renewal processes (sec)
+    "renew-timer": 900,
+    // T2 timer that govern when the client begins the rebind processes (sec)
+    "rebind-timer": 1800,
+    // how long the addresses (leases) given out by the server are valid (sec)
+    "valid-lifetime": 3600,
+    "option-data": [
+        {
+            // specify your DNS server
+            // to specify multiple entries, separate them with commas
+            "name": "domain-name-servers",
+            "data": "<DNS SERVER>,<DNS SERVER>"
+        },
+        {
+            // specify your domain name
+            "name": "domain-name",
+            "data": "<DOMAIN NAME>"
+        },
+        {
+            // specify your domain-search base
+            // to specify multiple entries, separate them with commas
+            "name": "domain-search",
+            "data": "<DOMAIN NAME>"
+        }
+    ],
+    "subnet4": [
+        {
+            "id": 1,
+            //specify subnet that DHCP is used
+            "subnet": "<SUBNET ADDRESS>",
+            // specify the range of IP addresses to be leased
+            "pools": [ { "pool": "<IP ADDRESS RANGE>" } ],
+            "option-data": [
+                {
+                    // specify your gateway
+                    "name": "routers",
+                    "data": "<GATEWAY ADDRESS>"
+                }
+            ]
+        }
+    ],
+    // logging settings
+    "loggers": [
+    {
+        "name": "kea-dhcp4",
+        "output-options": [
+            {
+                "output": "/var/log/kea/kea-dhcp4.log"
+            }
+        ],
+        "severity": "INFO",
+        "debuglevel": 0
+    }
+  ]
+}
+}
+
