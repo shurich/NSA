@@ -2,7 +2,7 @@
 "Dhcp4": {
     "interfaces-config": {
         // specify network interfaces to listen on
-        "interfaces": [ "ens33" ]
+        "interfaces": [ "ens18" ]
     },
     // settings for expired-leases (follows are default)
     "expired-leases-processing": {
@@ -24,7 +24,7 @@
             // specify your DNS server
             // to specify multiple entries, separate them with commas
             "name": "domain-name-servers",
-            "data": "192.168.1.12,8.8.8.8"
+            "data": "<DNS SERVER>,<DNS SERVER>"
         },
         {
             // specify your domain name
@@ -42,14 +42,14 @@
         {
             "id": 1,
             //specify subnet that DHCP is used
-            "subnet": "192.168.1.0/24",
+            "subnet": "<SUBNET ADDRESS>",
             // specify the range of IP addresses to be leased
-            "pools": [ { "pool": "192.168.1.100 - 192.168.1.200" } ],
+            "pools": [ { "pool": "<IP ADDRESS RANGE>" } ],
             "option-data": [
                 {
                     // specify your gateway
                     "name": "routers",
-                    "data": "192.168.1.1"
+                    "data": "<GATEWAY ADDRESS>"
                 }
             ]
         }
